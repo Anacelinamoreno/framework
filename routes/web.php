@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CasillaControler;
+use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\EleccionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('casilla',CasillaControler::class);
+Route::resource('candidato',CandidatoController::class);
+Route::resource('eleccion',EleccionController::class);
