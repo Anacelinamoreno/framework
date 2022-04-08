@@ -33,7 +33,9 @@ class Votocandidato extends Model
 	];
 
 	protected $fillable = [
-		'votos'
+		'votos',
+		'voto_id',
+		'candidato_id'
 	];
 
 	public function candidato()
