@@ -102,34 +102,32 @@ namespace App\Http\Controllers\Api;
          */
         public function update(Request $request, $id)
         {   
-            $validacion = Validator::make($request->all(), [
-                'nombrecompleto' => 'unique:candidato|required|max:200',
-                'sexo' =>'required']);
+                $candidato = Candidato::find($id);
                 
-            $fotocandidato=""; $perfilcandidato="";
-
-            if ($request->hasFile('foto')){
-            $foto = $request->file('foto');
-            $fotocandidato= $foto->getClientOriginalName();
-            }
-            if ($request->hasFile('perfil')){
-            $perfil = $request->file('perfil');
-            $perfilcandidato = $perfil->getClientOriginalName();
-            }
-
-            $campos = array(
-            'nombrecompleto' => $request->nombrecompleto,
-            'sexo' => $request->sexo,
-            'foto' => $fotocandidato,
-            'perfil' => $perfilcandidato,
-            );
-
-            if ($request->hasFile('foto')) $foto->move(public_path('image'), $fotocandidato);
-            if ($request->hasFile('perfil')) $perfil->move(public_path('pdf'), $perfilcandidato);
-
-            $candidato = Candidato::update($campos);
-            $resp = $this->sendResponse($candidato, "Guardado...");
-            return($resp);
+                $fotocandidato=""; $perfilcandidato="";
+    
+                if ($request->hasFile('foto')){
+                $foto = $request->file('foto');
+                $fotocandidato= $foto->getClientOriginalName();
+                }
+                if ($request->hasFile('perfil')){
+                $perfil = $request->file('perfil');
+                $perfilcandidato = $perfil->getClientOriginalName();
+                }
+    
+                $campos = array(
+                'nombrecompleto' => $request->nombrecompleto,
+                'sexo' => $request->sexo,
+                'foto' => $fotocandidato,
+                'perfil' => $perfilcandidato,
+                );
+    
+                if ($request->hasFile('foto')) $foto->move(public_path('image'), $fotocandidato);
+                if ($request->hasFile('perfil')) $perfil->move(public_path('pdf'), $perfilcandidato);
+    
+                $candidato = Candidato::update($campos);
+                $resp = $this->sendResponse($candidato, "Actualizado...");
+                return($resp);
         }
         private function send($data,$id) {
             if($data){
