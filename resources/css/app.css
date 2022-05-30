@@ -1,0 +1,13 @@
+.navegacion{
+    width: 1000px;
+    margin: 30px auto;
+    background: #06357a;
+  }
+  .navegacion ul{
+    list-style: none;
+  
+  }
+  .menu > li{
+    display: inline-block;
+  
+  }

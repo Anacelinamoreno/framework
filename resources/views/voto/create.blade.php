@@ -59,16 +59,33 @@
                     </tbody>
                 </table>
             </div>
-
-
             <div class="form-group">
                 <label for="evidencia">Evidencia:</label>
-                <input type="file" id="evidencia" accept="application/pdf"
-                 class="form-control" name="evidencia" />
+                <input type="file" id="evidencia" accept="application/pdf" class="form-control" name="evidencia" onclick="loadFile()" />
+                <div style="margin: 10px;"></div>
+                <embed src="src" id="src" style="width: 55vw; min-width: 140px;">
             </div>
-
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </div>
 </div>
+<script>
+    var MAX_SIZE = 2048;
+    let loadFile = () => {
+        //Obtener el file
+        let a = document.getElementById("evidencia").files[0].size;
+        //Dividir para tener una relacion con el tamaño de php.ini -> 2M
+        a = (a / 1024);
+        if (a > MAX_SIZE) {
+            alert("archivo muy grande, tamaño actual ");
+            //setear a null la eleccion
+            document.getElementById('evidencia').value = null;
+        } else {
+            alert("Archivo aceptable ");
+            let src = document.getElementById("src");
+            console.log("Existe el -> "+ src)
+            src.src= URL.createObjectURL(event.target.files[0])
+        }
+    }
+</script> 
 @endsection

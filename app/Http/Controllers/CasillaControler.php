@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Casilla;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class CasillaControler extends Controller
 {
@@ -45,6 +46,15 @@ class CasillaControler extends Controller
         return redirect('casilla')->with('success',
         $casilla->ubicacion . ' guardado satisfactoriamente ...');
     }
+    public function generatepdf()
+        {
+            
+            $casillas = Casilla::all();
+            $pdf = PDF::loadView('casilla/list', ['casillas'=>$casillas]);
+            //->save(storage_path(app/public).'casillas.pdf'));
+            return $pdf->stream('archivo.pdf');
+            
+        }
 
     /**
      * Display the specified resource.

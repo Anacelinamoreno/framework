@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Eleccion;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class EleccionController extends Controller
 {
@@ -73,7 +74,14 @@ class EleccionController extends Controller
     {
         //
     }
-
+    public function generatepdf()
+        {
+            
+            $elecciones = Eleccion::all();
+            $pdf = PDF::loadView('eleccion/list', ['elecciones'=>$elecciones]);
+            return $pdf->stream('archivo.pdf');
+            
+        }
     /**
      * Show the form for editing the specified resource.
      *

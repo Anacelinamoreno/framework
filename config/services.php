@@ -1,7 +1,18 @@
 <?php
 
-return [
+    return [
 
+        'facebook' => [
+                'client_id'=> env('FACEBOOK_CLIENT_ID', '518667709978854'),
+                'client_secret' =>
+                        env('FACEBOOK_CLIENT_SECRET',
+                        '3b498c36b385921ff4d2767dace2e424'),
+                'redirect' =>
+                            env('FACEBOOK_REDIRECT',
+                            'http://localhost:8888/login/facebook/callback')
+                       
+
+    ],
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

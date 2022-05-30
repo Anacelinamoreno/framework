@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Candidato;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class CandidatoController extends Controller
 {
@@ -35,7 +36,12 @@ class CandidatoController extends Controller
             'sexo' => 'required',
         ]);
     }
-
+    public function generatepdf()
+    {
+        $candidatos = Candidato::all();
+        $pdf = PDF::loadView('candidato/list', ['candidatos'=>$candidatos]);
+        return $pdf->download('archivo.pdf');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -51,11 +57,14 @@ class CandidatoController extends Controller
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
             $fotocandidato = $foto->getClientOriginalName();
+            
         }
+        
         if ($request->hasFile('perfil')) {
             $perfil = $request->file('perfil');
             $perfilcandidato = $perfil->getClientOriginalName();
         }
+        
         $campos=[
                 'nombrecompleto' => $request->nombrecompleto,
                 'sexo'           => $request->sexo,
@@ -69,9 +78,6 @@ class CandidatoController extends Controller
         //echo $candidato->nombrecompleto . " se guardo correctamente ... ";
         return redirect("candidato");
     }
-
-
-
     /**
      * Display the specified resource.
      *

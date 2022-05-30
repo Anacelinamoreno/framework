@@ -21,7 +21,7 @@
         @foreach($votos as $voto)
         <tr>
             <td>{{$voto->id}}</td>
-            <td>{{$voto->casilla->ubicacion}}</td>
+            <td>{{$voto->casilla->ubicacion??""}}</td>
             <td>
                 <table>
                 @foreach($voto->candidatos as $candidato)

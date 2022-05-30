@@ -119,6 +119,15 @@ class VotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    private function validateVote($request){
+        foreach($request->all() as $key=>$value){
+            if (substr($key,0,10)=="candidato_")
+                if ($value<0){
+                    return false;
+                }
+        }
+        return true;
+    }
     public function update(Request $request, $id)
     {
         if (!($this->validateVote($request))){
