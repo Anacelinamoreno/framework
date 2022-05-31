@@ -49,28 +49,8 @@
                 <div style="margin: 10px;"></div>
                 <embed src="src" id="src" style="width: 55vw; min-width: 140px;">
             </div>
-
-
-            <!--
-            <div class="form-group">
-                <label for="foto">Foto:</label>
-                <div style="margin: 10px;"></div>
-                <input type="file" id="foto" accept="image/png, image/jpeg" 
-                 class="form-control" name="foto" onchange= "previaImg()" onclick="loadImg()"/>
-            </div>
-            <div id="preview"></div>
-
-            <div class="form-group">
-                <label for="perfil">Perfil:</label>
-                <input type="file" id="perfil" accept="application/pdf"
-                 class="form-control" name="perfil" onchange="previaPdf()" />
-            </div>
-            <div id="preview1"></div>
-            -->
             <button type="submit" class="btn btn-primary" >Guardar</button>
         </form>
-        
-
     </div>
 </div>
 <script>

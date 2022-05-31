@@ -45,8 +45,9 @@
 					<li><a href="{{ asset('voto') }}">listar</a></li>
 				</ul>
 			</li>
-            <li><a href="{{ asset('logout') }}">Cerra sesion</a></li>
             <li><a href="{{ asset('preview') }}">Grafica</a></li>
+            <li><a href="{{ asset('logout') }}">Cerra sesion</a></li>
+            
 		</ul>
 	</nav>
         <div class="row">
